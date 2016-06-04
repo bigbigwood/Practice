@@ -116,14 +116,15 @@ namespace demo.bigdata.client
             var response = Upload(url, fileFullPath);
             if (response.Contains("Success"))
             {
-                string counter = response.Substring(response.IndexOf("["), response.IndexOf("]") - response.IndexOf("["));
+                int numberStartIndex = response.IndexOf("[") + 1;
+                int numberLength = response.IndexOf("]") - numberStartIndex;
+                string counter = response.Substring(numberStartIndex, numberLength);
                 ShowMessage(string.Format("完成上传{0}个订单...", counter));
                 bw.ReportProgress(100);
             }
             else
             {
-                Invoke(new Action(() => { ShowMessage(string.Format("上传失败: 错误为: {0}", response)); }));
-                //ShowMessage(string.Format("上传失败: 错误为: {0}", response));
+                Invoke(new Action(() => { ShowMessage(string.Format("上传失败: 错误为: {0}", response)); })); // wait until show message
                 throw new Exception(string.Format("上传失败: 错误为: {0}", response));
             }
         }
