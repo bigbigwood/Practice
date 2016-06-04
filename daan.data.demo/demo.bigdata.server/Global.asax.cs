@@ -1,7 +1,9 @@
 ﻿using log4net;
 using log4net.Config;
+using SevenZip;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -20,6 +22,8 @@ namespace demo.bigdata.server
             //Initialize Log4net
             XmlConfigurator.Configure();
             Log.Info("Starting web service, initializing components");
+
+            SevenZipExtractor.SetLibraryPath(ConfigurationManager.AppSettings.Get("7zFilePath"));
         }
 
         protected void Session_Start(object sender, EventArgs e)

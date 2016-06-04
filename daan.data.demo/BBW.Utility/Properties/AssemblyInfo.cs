@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("demo.bigdata.zipper")]
+[assembly: AssemblyTitle("BBW.Utility")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("demo.bigdata.zipper")]
+[assembly: AssemblyProduct("BBW.Utility")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("58ebf6c1-cbe5-44a7-aa58-62c619654198")]
+[assembly: Guid("2afe42db-9cde-4a5b-99a0-bbc8116f6c55")]
 
 // Version information for an assembly consists of the following four values:
 //

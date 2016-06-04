@@ -1,6 +1,6 @@
-﻿using demo.bigdata.zipper;
-using Helpers;
+﻿using Helpers;
 using log4net;
+using SevenZip;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -31,31 +31,36 @@ namespace demo.bigdata.server
                         Directory.CreateDirectory(directory);
                     }
 
-                    string filePath = string.Format(@"{0}\{1}", directory, file.FileName);
+                    string fileNameWithoutExtension = file.FileName.Substring(0, file.FileName.LastIndexOf("."));
+                    string fileExtension = file.FileName.Substring(file.FileName.LastIndexOf("."));
+                    string filePath = string.Format(@"{0}\{1}_{2}{3}", directory, fileNameWithoutExtension, DateTime.Now.ToString("yyyyMMddHHmmssfff"), fileExtension);
                     file.SaveAs(filePath);
 
-                    string zipPath = string.Format(@"{0}{1}", AppDomain.CurrentDomain.BaseDirectory, @"bin\7z\7z.exe");
-                    var sevenZipper = new SevenZipper();
-                    sevenZipper.UnZip(filePath, filePath.Substring(0, filePath.LastIndexOf(".")), zipPath);
+                    using (var tmp = new SevenZipExtractor(filePath))
+                    {
+                        tmp.ExtractArchive(directory);
+                    }
 
-                    BuldInsertData(filePath.Substring(0, filePath.LastIndexOf(".")));
+                    string afterZipFilePath = string.Format(@"{0}\{1}", directory, fileNameWithoutExtension);
+                    var counter = BuldInsertData(afterZipFilePath);
 
-                    context.Response.Write("Success/r/n");
+                    context.Response.Write("Success");
+                    context.Response.Write(string.Format("[{0}] rows data inserted.", counter));
                     return;
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                    context.Response.Write("Error/r/n");
+                    context.Response.Write("Error: " + ex.ToString());
                     return;
                 }
             }
 
             context.Response.ContentType = "text/plain";
-            context.Response.Write("Hello World");
+            context.Response.Write("No upload file was recoginzed.");
         }
 
-        private void BuldInsertData(string filePath)
+        private Int32 BuldInsertData(string filePath)
         {
             string conn = ConfigurationManager.ConnectionStrings["MySqlConn"].ConnectionString;
             MySqlHelper mySqlHelper = new MySqlHelper(conn);
@@ -88,6 +93,8 @@ namespace demo.bigdata.server
             Log.Info("Start insert");
             var counter = mySqlHelper.BulkInsertByFile(filePath, table);
             Log.InfoFormat("Finish insert {0} rows", counter);
+
+            return counter;
         }
 
         public bool IsReusable

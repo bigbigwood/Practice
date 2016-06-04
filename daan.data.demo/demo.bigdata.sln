@@ -6,8 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo.bigdata.server", "demo.bigdata.server\demo.bigdata.server.csproj", "{B57F3471-D6DC-4E91-B101-642330969C6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo.bigdata.client", "demo.bigdata.client\demo.bigdata.client.csproj", "{6B4E6E82-F84C-40E8-AC91-3B9A7CFE8E20}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B57F3471-D6DC-4E91-B101-642330969C6A} = {B57F3471-D6DC-4E91-B101-642330969C6A}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo.bigdata.zipper", "demo.bigdata.zipper\demo.bigdata.zipper.csproj", "{17921EAB-613C-450B-B464-13B86717397B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBW.Utility", "BBW.Utility\BBW.Utility.csproj", "{CFC247A5-3665-4805-AC9A-D72B934997F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +26,10 @@ Global
 		{6B4E6E82-F84C-40E8-AC91-3B9A7CFE8E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B4E6E82-F84C-40E8-AC91-3B9A7CFE8E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B4E6E82-F84C-40E8-AC91-3B9A7CFE8E20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17921EAB-613C-450B-B464-13B86717397B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17921EAB-613C-450B-B464-13B86717397B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17921EAB-613C-450B-B464-13B86717397B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17921EAB-613C-450B-B464-13B86717397B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFC247A5-3665-4805-AC9A-D72B934997F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC247A5-3665-4805-AC9A-D72B934997F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC247A5-3665-4805-AC9A-D72B934997F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC247A5-3665-4805-AC9A-D72B934997F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
